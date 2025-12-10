@@ -98,11 +98,7 @@ export default defineComponent({
     });
 
     onMounted(() => {
-      if (!isMobile()) {
-        sidebarVisible.value = true;
-      } else {
-        sidebarVisible.value = false;
-      }
+      sidebarVisible.value = false;
     });
 
     return {

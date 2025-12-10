@@ -9,15 +9,19 @@
 </template>
 
 <script lang="ts">
+import { defineComponent, ref } from 'vue';
 import { TresCanvas } from '@tresjs/core';
+
 import FirstView from '@/components/dashboard-components/FirstView.vue';
-import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'dashboard',
   components: {
     TresCanvas,
     FirstView,
+  },
+  setup() {
+    return {};
   },
 });
 </script>
