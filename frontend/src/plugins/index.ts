@@ -21,7 +21,7 @@ export function registerPlugins(app: App) {
     .use(vuetify)
     .use(pinia)
     .use(permissionPlugin)
-    .use(utilsPlugins)
     .use(router)
+    .use(utilsPlugins)
     .use(VueAwesomePaginate);
 }

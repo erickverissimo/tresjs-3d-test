@@ -1,9 +1,10 @@
 import path from 'path';
 
 // Plugins
-import { templateCompilerOptions } from '@tresjs/core';
+import { templateCompilerOptions as tresCompiler } from '@tresjs/core';
 import vue from '@vitejs/plugin-vue';
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify';
+import glsl from 'vite-plugin-glsl';
 import ViteFonts from 'unplugin-fonts/vite';
 
 // Utilities
@@ -15,10 +16,12 @@ export default defineConfig({
     vue({
       template: {
         transformAssetUrls,
-        compilerOptions: {},
+        compilerOptions: {
+          ...tresCompiler.template?.compilerOptions,
+        },
       },
-      ...templateCompilerOptions,
     }),
+    glsl(),
     vuetify({
       autoImport: true,
     }),
@@ -33,6 +36,16 @@ export default defineConfig({
       },
     }),
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          three: ['three'],
+        },
+      },
+    },
+  },
+  assetsInclude: ['**/*.gltf', '**/*.glb', '**/*.obj', '**/*.fbx'],
   cacheDir: 'node_modules/.vite',
   optimizeDeps: {
     include: [
@@ -79,6 +92,7 @@ export default defineConfig({
       'vuetify/components/VSwitch',
       'vuetify/components/VProgressLinear',
     ],
+    exclude: ['vue', 'three'],
   },
   css: {
     preprocessorOptions: {
