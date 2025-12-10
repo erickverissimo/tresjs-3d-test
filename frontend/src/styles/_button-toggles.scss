@@ -1,0 +1,10 @@
+.v-btn-group {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: stretch;
+  height: auto !important;
+  overflow: initial;
+  .v-btn {
+    height: 36px !important;
+  }
+}

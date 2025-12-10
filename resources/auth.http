@@ -1,0 +1,18 @@
+# @name login
+POST http://localhost:8000/api/auth/login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "admin@oxy.com.br",
+    "password": "BasePass@123"
+}
+
+###
+
+
+@authToken = {{login.response.body.$.token}}
+
+### LIST
+
+GET http://localhost:8000/api/auth/me HTTP/1.1
+Authorization: Bearer {{authToken}}

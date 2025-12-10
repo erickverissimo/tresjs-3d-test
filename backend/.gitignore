@@ -1,0 +1,10 @@
+.env
+.env.local
+logs
+dist
+node_modules
+coverage
+mongo_prod.pem
+uploads
+
+.npm-cache
