@@ -1,28 +1,64 @@
-<script setup lang="ts">
-import type { TresObject } from '@tresjs/core';
-import { useLoop } from '@tresjs/core';
-import { shallowRef } from 'vue';
+<template>
+  <!-- CÂMERA -->
+  <TresPerspectiveCamera
+    :position="cameraPosition"
+    :fov="45"
+    :lookAt="[0, 0, 0]"
+  />
 
-const { onBeforeRender } = useLoop();
+  <!-- CONTROLE PARA GIRAR -->
+  <OrbitControls />
 
-const boxRef = shallowRef<TresObject | null>(null);
+  <!-- LUZES -->
+  <TresAmbientLight :intensity="0.6" />
+  <TresDirectionalLight :position="[10, 20, 10]" :intensity="1.2" cast-shadow />
 
-onBeforeRender(({ elapsed }) => {
-  if (boxRef.value) {
-    boxRef.value.rotation.y = elapsed;
-    boxRef.value.rotation.z = elapsed;
-  }
+  <!-- SOLO (rotacionado para ficar “no chão”) -->
+  <TresMesh receive-shadow :rotation="[-Math.PI / 2, 0, 0]">
+    <TresBoxGeometry :args="[40, 40]" />
+    <TresMeshStandardMaterial color="#79d8c5" />
+  </TresMesh>
+
+  <!-- PRÉDIO 1 -->
+  <TresMesh :position="[-10, 3, -10]" cast-shadow>
+    <TresBoxGeometry :args="[6, 6, 6]" />
+    <TresMeshStandardMaterial color="#4c566a" />
+  </TresMesh>
+
+  <!-- PRÉDIO 2 -->
+  <TresMesh :position="[10, 5, -10]" cast-shadow>
+    <TresBoxGeometry :args="[8, 10, 8]" />
+    <TresMeshStandardMaterial color="#5e81ac" />
+  </TresMesh>
+
+  <!-- PRÉDIO 3 -->
+  <TresMesh :position="[-5, 4, 10]" cast-shadow>
+    <TresBoxGeometry :args="[5, 8, 5]" />
+    <TresMeshStandardMaterial color="#6d747e" />
+  </TresMesh>
+
+  <!-- PRÉDIO 4 -->
+  <TresMesh :position="[12, 2, 10]" cast-shadow>
+    <TresBoxGeometry :args="[4, 4, 4]" />
+    <TresMeshStandardMaterial color="#9aa1aa" />
+  </TresMesh>
+</template>
+
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+import { OrbitControls } from '@tresjs/cientos';
+
+export default defineComponent({
+  name: 'first-view',
+  components: {
+    OrbitControls,
+  },
+  setup() {
+    const cameraPosition = ref<[number, number, number]>([25, 30, 50]);
+
+    return {
+      cameraPosition,
+    };
+  },
 });
 </script>
-
-<template>
-  <TresPerspectiveCamera :position="[10, 10, 10]" :look-at="[0, 0, 0]" />
-  <TresAmbientLight :intensity="0.5" color="white" />
-  <TresMesh ref="boxRef" :position="[0, 2, 0]">
-    <TresBoxGeometry :args="[1, 1, 1]" />
-    <TresMeshNormalMaterial />
-  </TresMesh>
-  <TresDirectionalLight :position="[0, 2, 4]" :intensity="1" cast-shadow />
-  <TresAxesHelper />
-  <TresGridHelper :args="[10, 10]" />
-</template>
