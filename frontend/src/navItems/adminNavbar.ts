@@ -8,4 +8,11 @@ export const sidebarItems = (): ISidebarItemsTypes[] => [
     resource: '',
     action: '',
   },
+  {
+    name: 'Teste',
+    to: '/teste',
+    icon: 'mdi-chart-bar',
+    resource: '',
+    action: '',
+  },
 ];

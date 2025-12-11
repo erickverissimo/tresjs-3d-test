@@ -11,7 +11,7 @@ const {
   state: model,
   isLoading,
   error,
-} = useLoader(FBXLoader, '/models/teste 4.fbx');
+} = useLoader(FBXLoader, '/models/Planta Quartzolits Weber teste 2.fbx');
 
 watch(model, (newModel) => {
   if (newModel) {

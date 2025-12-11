@@ -1,7 +1,10 @@
 <template>
-  <v-container fluid class="d-flex justify-center align-center fill-height">
-    <div style="width: 1550px; height: 1000px">
-      <TresCanvas class="border rounded-lg" clear-color="grey">
+  <v-container
+    fluid
+    class="d-flex justify-center align-center fill-height pa-4"
+  >
+    <div style="width: 1250px; height: 750px">
+      <TresCanvas class="border rounded-lg" clear-color="#D3D3D3">
         <FirstView />
       </TresCanvas>
     </div>

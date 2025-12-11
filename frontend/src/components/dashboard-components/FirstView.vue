@@ -1,6 +1,11 @@
 <template>
-  <OrbitControls :enableRotate="true" :enablePan="true" :enableZoom="true" />
-  <TresPerspectiveCamera :position="[25, 35, 10]" :look-at="[1, 2, 1]" />
+  <OrbitControls
+    :enableRotate="true"
+    :enablePan="true"
+    :enableZoom="true"
+    :target="[0, 0, 0]"
+  />
+  <TresPerspectiveCamera :position="[0, 0, 3]" :args="[40, 1, 0.1, 1000]" />
   <Suspense>
     <ModelViewer />
   </Suspense>
